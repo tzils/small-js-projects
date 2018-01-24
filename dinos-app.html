@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en-ca">
+<head>
+  <meta charset="utf-8">
+  <title>Data Filter</title>
+</head>
+<body>
+
+  <select class="items">
+    <option>Select a dinosaur</option>
+  </select>
+
+  <dl>
+    <dt>Name</dt>
+    <dd class="name"></dd>
+    <dt>Diet</dt>
+    <dd class="diet"></dd>
+    <dt>Period</dt>
+    <dd class="period"></dd>
+  </dl>
+
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/data-filter.js"></script>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script>
+var dinos = [
+  {
+    name: 'Stegosaurus',
+    diet: 'Plant eater',
+    period: 'Late Jurassic'
+  },
+  {
+    name: 'Tyrannosaurus',
+    diet: 'Meat eater',
+    period: 'Upper Cretaceous'
+  },
+  {
+    name: 'Velociraptor',
+    diet: 'Meat eater',
+    period: 'Upper Cretaceous'
+  }
+];
+
+// Select all the HTML elements we need
+var $items = $('.items');
+var $name = $('.name');
+var $diet = $('.diet');
+var $period = $('.period');
+
+// Loop over all the dinosaurs in the data.js file
+dinos.forEach(function (item, i) {
+  // Create a new <option> tag for each dinosaur
+  $items.append('<option value="' + i + '">' + item.name + '</option>');
+});
+
+// When the <select> box is changed
+$items.on('change', function () {
+  // Get the <select> box's value to determine which dinosaur was selected
+  var dino = dinos[$items.val()];
+
+  if (dino) {
+    // If a dinosaur was chosen:
+    // Fill the HTML tags with the correct information from data.js
+    $name.html(dino.name);
+    $diet.html(dino.diet);
+    $period.html(dino.period);
+  } else {
+    // If no dinosaur was chosen:
+    // Empty all the HTML tags
+    $name.html('');
+    $diet.html('');
+    $period.html('');
+  }
+});
+</script>
+</html>
