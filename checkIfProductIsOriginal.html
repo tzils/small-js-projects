@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+<p>
+	Please provide the serial number of your product:</p>
+<p>
+	<input id="product" style="height: 40px; padding: 3px 0 0 0;" type="text" />&nbsp;&nbsp;
+  
+<button class="bttn-fill bttn-sm bttn-primary" id="check" style="padding: 10px">Click to check</button>
+</p>
+  
+<p id="output">&nbsp;</p>
+</body>
+
+
+<script>
+var arr = [
+    { name :"pipe-pert", 
+      sn : "2123154112"},
+    { name :"pipe-pert", 
+      sn : "2123154113"},
+    { name :"pipe-pert", 
+      sn : "21231541"},
+    { name :"pipe-pert", 
+      sn : "21231541124"},
+];
+
+
+var productInput = document.getElementById('product'),
+    checkBtn = document.getElementById('check'),
+    output = document.getElementById('output');
+
+checkBtn.addEventListener('click', function(e) {
+  var serialNumber = productInput.value;
+  
+  for (var i = 0; i < arr.length; i++) {
+      if(arr[i].sn === serialNumber) {
+        output.innerHTML = "<h2>This product is original!</h2>" + "<br>" + arr[i].NazwaEng + "<br>"+ "<strong>Work Order Number:</strong> " +  arr[i].workOrder + "<br>" + "<strong>Catalogue Code:</strong> " + arr[i].CatCode
+        break;
+      } else {
+        output.innerHTML = "<h2>This product may be counterfeit!</h2>Please contact our sales department for more information!";
+      }
+  }
+});
+</script>
+</html>
